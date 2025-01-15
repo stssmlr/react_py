@@ -1,32 +1,30 @@
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
+import CategoryListPage from "./pages/Category/CategoryListPage.tsx";
+import CreateCategoryPage from "./pages/Category/CreateCategoryPage.tsx";
 
-import Card from "./components/common/card";
-import {useEffect} from 'react'
-import './App.css'
-import MyCarousel from "./components/common/mycarusel.tsx";
-import {APP_ENV} from "./env";
-import HomePage from "./pages/home";
-
-function App() {
-  useEffect(() => {
-    console.log("Use Effect!");
-}, []);
-
-console.log("Render component :)", APP_ENV.REMOTE_BASE_URL);
+const App: React.FC = () => {
 
   return (
-    <>
-      <HomePage />
-
-      <button type="button"
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Default
-            </button>
-            <MyCarousel />
-            <Card/>
-            <h1 className="text-center text-3xl font-bold underline">
-                Hello world!
-            </h1>
-    </>
-  )
-}
-
-export default App
+        <Router>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<HomePage />} />
+                    <Route path="about" element={<AboutPage />} />
+                    <Route path="contact" element={<ContactPage />} />
+                    <Route path="categories">
+                        <Route index element={<CategoryListPage />} /> 
+                        <Route path="create" element={<CreateCategoryPage />} />
+                        {/*<Route path="edit/:id" element={<EditCategoryPage />} />*/}
+                        {/*<Route path=":id" element={<ViewCategoryPage />} />*/}
+                    </Route>
+                </Route>
+            </Routes>
+        </Router>
+    );
+};
+export default App;
