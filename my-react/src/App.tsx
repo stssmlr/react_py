@@ -19,7 +19,7 @@ const App: React.FC = () => {
                     <Route path="categories">
                         <Route index element={<CategoryListPage />} /> 
                         <Route path="create" element={<CreateCategoryPage />} />
-                        {/*<Route path="edit/:id" element={<EditCategoryPage />} />*/}
+                        <Route path="edit/:id" element={<EditCategoryPage />} />
                         {/*<Route path=":id" element={<ViewCategoryPage />} />*/}
                     </Route>
                 </Route>
